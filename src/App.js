@@ -1,25 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useSelector, useDispatch } from 'react-redux'
+import { increment } from './Slices/cartSlice';
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+  const dispatch = useDispatch();
+  const cartItemsCount = useSelector((state) => state.cart.items);
+  return <div>
+    <h1>Cart Items: {cartItemsCount}</h1>
+    <button onClick={() => dispatch(increment())}>Buy Item</button>
+  </div>;
 }
 
 export default App;
